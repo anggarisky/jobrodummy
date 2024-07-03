@@ -1,26 +1,39 @@
 import { useEffect, useState } from "react";
 import JobCard from "./components/JobCard"
-import { Job } from "./types/type"
+import { Category, Job } from "./types/type"
 import axios from "axios";
 import Navbar from "./Navbar";
+import CategoryCard from "./CategoryCard";
 
 function Jobs() {
 
     const [jobs, setJobs] = useState<Job[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/jobs')
-        .then(response => {
-            setJobs(response.data.data); // Adjust based on your API response structure
-            setLoading(false);
-        })
-        .catch(error => {
-            setError(error);
-            setLoading(false);
-        });
-}, []);
+    useEffect(() => {
+      // Define the URLs for the API endpoints
+      const jobsUrl = 'http://127.0.0.1:8000/api/jobs';
+      const categoriesUrl = 'http://127.0.0.1:8000/api/categories';
+  
+      // Use Promise.all to handle multiple API requests
+      Promise.all([
+        axios.get(jobsUrl),
+        axios.get(categoriesUrl)
+      ])
+      .then(responses => {
+        // Update state with the data from the responses
+        setJobs(responses[0].data.data); // Adjust based on your API response structure
+        setCategories(responses[1].data.data); // Adjust based on your API response structure
+        setLoading(false);
+      })
+      .catch(error => {
+        // Handle errors from either request
+        setError(error.message);
+        setLoading(false);
+      });
+    }, []);
 
 
   if (loading) {
@@ -77,9 +90,23 @@ function Jobs() {
               alt="banner"
             />
           </div>
-        </header>   
+        </header> 
+        <section
+  id="Categories"
+  className="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px]"
+>
+  <h2 className="font-bold text-2xl leading-[36px] text-white">
+    Browse by <br /> Job Categories
+  </h2>
+  <div className="categories-container grid grid-cols-4 gap-[30px]">
+  {categories.map((category) => (
+    <CategoryCard key={category.id} category={category}/>
+  ))}
+  </div>
+</section>
+  
         <section id="Latest" className="flex flex-col mt-[70px] gap-y-10 mx-auto max-w-6xl">
-          <h2 className="container max-w-[1130px] mx-auto font-bold text-white text-2xl leading-[36px]">
+          <h2 className="container max-w-[1130px] mx-auto font-bold text-black text-2xl leading-[36px]">
             Latest Jobs <br /> Get Them Now
           </h2>
           <div className="grid grid-cols-3 gap-10">
