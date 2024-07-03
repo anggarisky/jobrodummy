@@ -2,7 +2,8 @@ export interface Job {
     id: number,
     name: string,
     slug: string,
-    category: Category,
+    category: string,
+    keypoints: JobKeypoints[],
     thumbnail: string,
     about: string,
     companyName: string,
@@ -12,6 +13,11 @@ export interface Job {
     salary: number
     created_at: string;
     updated_at: string;
+}
+
+export interface JobKeypoints {
+    id: number,
+    name: string
 }
 
 export interface Category {

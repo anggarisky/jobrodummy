@@ -79,20 +79,23 @@ export default function JobDetails() {
         />
       </div>
       <div className="absolute transform translate-y-1/2 bottom-0 right-5">
-        {/* <p id="ClosedBadge" class="rounded-full p-[8px_20px] bg-[#FF2C39] font-bold text-white w-fit">CLOSED</p> */}
+      {job.name == 'angga' ? 
+        <p id="ClosedBadge" className="rounded-full p-[8px_20px] bg-[#FF2C39] font-bold text-white w-fit">CLOSED</p>
+        :
         <p
           id="HiringBadge"
           className="rounded-full p-[8px_20px] bg-[#7521FF] font-bold text-white w-fit"
         >
           WE’RE HIRING!
         </p>
+}
       </div>
     </div>
     <div id="Title" className="flex flex-col mt-[90px] gap-[10px]">
       <h1 className="font-bold text-[32px] leading-[48px]">
         {job.name}
       </h1>
-      <p>{job.category ? job.category.name : 'unknown'} • Posted at {job.created_at ? formatDate(job.created_at) : 'Date not available'}</p>
+      <p>{job.category} • Posted at {job.created_at ? formatDate(job.created_at) : 'Date not available'}</p>
     </div>
     <div id="Feature" className="flex items-center gap-6">
       <div className="flex items-center gap-[6px]">
@@ -129,30 +132,16 @@ export default function JobDetails() {
     <div id="Responsibilities" className="flex flex-col gap-[10px]">
       <h2 className="font-semibold text-xl leading-[30px]">Responsibilities</h2>
       <div className="flex flex-col gap-5">
-        <div className="flex items-center gap-2">
+      {job.keypoints.map((keypoint) => (
+
+          <div key={keypoint.id} className="flex items-center gap-2">
           <div className="flex shrink-0">
             <img src="/assets/icons/tick-circle.svg" alt="tick icon" />
           </div>
-          <p>Lorem dolor quick interview ipsum amet never nego</p>
+          <p>{keypoint.name}</p>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="flex shrink-0">
-            <img src="/assets/icons/tick-circle.svg" alt="tick icon" />
-          </div>
-          <p>Powerful AI filtering job based on resume to create stunning</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="flex shrink-0">
-            <img src="/assets/icons/tick-circle.svg" alt="tick icon" />
-          </div>
-          <p>Lorem dolor quick interview ipsum amet never nego</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="flex shrink-0">
-            <img src="/assets/icons/tick-circle.svg" alt="tick icon" />
-          </div>
-          <p>Powerful AI filtering job based on resume to create stunning</p>
-        </div>
+        ))}
+        
       </div>
     </div>
     <div id="Qualifications" className="flex flex-col gap-[10px]">
