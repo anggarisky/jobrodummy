@@ -14,7 +14,7 @@ export default function CategoryCard({category}: CategoryCardProps) {
         <div className="flex items-center justify-between gap-4">
           <div className="flex flex-col">
             <p className="font-bold text-lg leading-[27px]">{category.name}</p>
-            <p className="font-medium">182 Jobs</p>
+            <p className="font-medium">{category.jobs_count} Jobs</p>
           </div>
           <img src="assets/icons/arrow-circle-right.svg" alt="icon" />
         </div>

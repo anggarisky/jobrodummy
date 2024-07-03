@@ -99,7 +99,7 @@ export default function JobDetails() {
         <div className="flex shrink-0 w-[38px] h-[38px]">
           <img src="/assets/icons/note-favorite-orange.svg" alt="icon" />
         </div>
-        <p className="font-semibold text-lg leading-[27px]">Full-Time</p>
+        <p className="font-semibold text-lg leading-[27px]">{job.type}</p>
       </div>
       <div className="flex items-center gap-[6px]">
         <div className="flex shrink-0 w-[38px] h-[38px]">
@@ -111,23 +111,19 @@ export default function JobDetails() {
         <div className="flex shrink-0 w-[38px] h-[38px]">
           <img src="/assets/icons/moneys-cyan.svg" alt="icon" />
         </div>
-        <p className="font-semibold text-lg leading-[27px]">Rp 18.500.000/mo</p>
+        <p className="font-semibold text-lg leading-[27px]">Rp {job.salary.toLocaleString('id')}/mo</p>
       </div>
       <div className="flex items-center gap-[6px]">
         <div className="flex shrink-0 w-[38px] h-[38px]">
           <img src="/assets/icons/location-purple.svg" alt="icon" />
         </div>
-        <p className="font-semibold text-lg leading-[27px]">Bali, Indonesia</p>
+        <p className="font-semibold text-lg leading-[27px]">{job.location}</p>
       </div>
     </div>
     <div id="Overview" className="flex flex-col gap-[10px]">
       <h2 className="font-semibold text-xl leading-[30px]">Overview</h2>
       <p className="text-lg leading-[34px]">
-        We are seeking a talented and passionate Front-End Developer to join our
-        dynamic team the ideal candidate will have a keen eye for design, a deep
-        understanding of modern web technologies, and a passion for creating
-        engaging user experiences a Front-End Developer, you will work closely
-        with our design and back-end teams to build responsive, user-friendly.
+        {job.about}
       </p>
     </div>
     <div id="Responsibilities" className="flex flex-col gap-[10px]">
@@ -194,14 +190,14 @@ export default function JobDetails() {
         <div className="flex items-center gap-5">
           <div className="company-logo w-[70px] flex shrink-0">
             <img
-              src="/assets/logos/grab.svg"
+              src={`${baseURL}${job.companyLogo}`}
               className="object-contain"
               alt="icon"
             />
           </div>
           <div className="flex flex-col gap-[2px]">
             <div className="CompanyName font-semibold flex items-center gap-[2px]">
-              <p className="font-semibold">Grab Singapore</p>
+              <p className="font-semibold">{job.companyName}</p>
               <div className="w-6 h-6 flex shrink-0">
                 <img src="/assets/icons/verify.svg" alt="verified" />
               </div>

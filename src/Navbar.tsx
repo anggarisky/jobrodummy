@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
     return(
         <nav className="container max-w-[1130px] mx-auto flex items-center justify-between pt-10">
@@ -6,12 +8,11 @@ export default function Navbar() {
           </a>
           <ul className="flex items-center gap-10">
             <li>
-              <a
-                href="index.html"
+              <Link to={`/`}
                 className="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-semibold text-[#FF6B2C]"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <a

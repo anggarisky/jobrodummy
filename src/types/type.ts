@@ -4,6 +4,7 @@ export interface Job {
     slug: string,
     category: Category,
     thumbnail: string,
+    about: string,
     companyName: string,
     companyLogo: string,
     location: string,
@@ -18,6 +19,8 @@ export interface Category {
     name: string;
     slug: string;
     icon: string;
+    jobs_count: number;
+    jobs: Job[];
     created_at: string;
     updated_at: string;
 }
